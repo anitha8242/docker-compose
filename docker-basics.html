@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating a container image for use on Amazon ECS - Amazon Elastic Container Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="create-container-image" /><meta name="default_state" content="create-container-image" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html" /><meta name="description" content="Amazon ECS uses Docker images in task definitions to launch containers. Docker is a technology that provides the tools for you to build, run, test, and deploy distributed applications in containers. Docker provides a walkthrough on deploying containers on Amazon ECS. For more information, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Elastic Container Service" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Run, stop, and manage Docker containers on a cluster using the Amazon Elastic Container Service Developer Guide." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><meta name="feedback-item" content="AmazonEC2ContainerService" /><meta name="this_doc_product" content="Amazon Elastic Container Service" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'ecs'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Creating a container image for use on Amazon ECS" /></head><body ng-csp="no-unsafe-eval" class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Creating a container image for use on Amazon ECS - Amazon Elastic Container Service</title><meta name="pdf" content="/pdfs/AmazonECS/latest/developerguide/ecs-dg.pdf#create-container-image" /><meta name="github" content="https://github.com/awsdocs/amazon-ecs-developer-guide/tree/master/doc_source/create-container-image.md" /><meta name="rss" content="amazon-ecs-release-notes.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=187" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AmazonEC2ContainerService&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/create-container-image.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/create-container-image.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/create-container-image.html" /><meta name="keywords" content="ECS,Amazon ECS,Amazon Elastic Container Service" /></head><body><div id="main"><div style="display: none"><a href="/pdfs/AmazonECS/latest/developerguide/ecs-dg.pdf#create-container-image" target="_blank" rel="noopener noreferrer" title="Open PDF"></a><a href="https://github.com/awsdocs/amazon-ecs-developer-guide/tree/master/doc_source/create-container-image.md" target="_blank" rel="noopener noreferrer" title="Edit this page on GitHub"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="http://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/ecs/index.html">Amazon ECS</a><a href="Welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#create-container-image-prerequisites">Prerequisites</a><a href="#create-container-image-create-image">Create a Docker image</a><a href="#create-container-image-push-ecr">Push your image to Amazon Elastic Container Registry</a><a href="#create-container-image-cleanup">Clean up</a><a href="#create-container-image-next-steps">Next steps</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="create-container-image">Creating a container image for use on Amazon ECS</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon ECS uses Docker images in task definitions to launch containers. Docker is a technology
+        that provides the tools for you to build, run, test, and deploy distributed applications in
+        containers. Docker provides a walkthrough on deploying containers on Amazon ECS. For more
+        information, see <a href="https://docs.docker.com/engine/context/ecs-integration/" rel="noopener noreferrer" target="_blank"><span>Deploying Docker containers on Amazon ECS</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>The purpose of the steps outlined here is to walk you through creating your first Docker
+        image and pushing that image to Amazon ECR, which is a container registry, for use in your Amazon ECS
+        task definitions. This walkthrough assumes that you possess a basic understanding of what
+        Docker is and how it works. For more information about Docker, see <a href="http://aws.amazon.com/docker/" rel="noopener noreferrer" target="_blank"><span>What is Docker?</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and the <a href="https://docs.docker.com/engine/docker-overview/" rel="noopener noreferrer" target="_blank"><span>Docker overview</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><span>Important</span></div><div class="awsdocs-note-text"><p>AWS and Docker have collaborated to make a simplified developer experience that
+            enables you to deploy and manage containers on Amazon ECS directly using Docker tools. You
+            can now build and test your containers locally using Docker Desktop and Docker Compose,
+            and then deploy them to Amazon ECS on Fargate. To get started with the Amazon ECS and Docker
+            integration, download Docker Desktop and optionally sign up for a Docker ID. For more
+            information, see <a href="https://www.docker.com/products/docker-desktop" rel="noopener noreferrer" target="_blank"><span>Docker
+                Desktop</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://hub.docker.com/signup/awsedge?utm_source=awsedge" rel="noopener noreferrer" target="_blank"><span>Docker ID
+                signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+        <h2 id="create-container-image-prerequisites">Prerequisites</h2>
+        <p>Before you begin, ensure the following prerequisites are met.</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist" type="disc"><li class="listitem">
+                <p>Ensure you have completed the Amazon ECR setup steps. For more information, see
+                        <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/get-set-up-for-amazon-ecr.html">Setting up
+                        for Amazon ECR</a> in the <em>Amazon Elastic Container Registry User Guide</em>.</p>
+            </li><li class="listitem">
+                <p>Your user has the required IAM permissions to access and use the Amazon ECR
+                    service. For more information, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/security-iam-awsmanpol.html">Amazon ECR managed
+                        policies</a>.</p>
+            </li><li class="listitem">
+                <p>You have Docker installed. For Docker installation steps for Amazon Linux 2, see <a href="#create-container-image-install-docker">Installing Docker on
+                        Amazon Linux 2</a>. For all other
+                    operating systems, see the Docker documentation at <a href="https://docs.docker.com/desktop/" rel="noopener noreferrer" target="_blank"><span>Docker Desktop
+                    overview</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                <p>You have the AWS CLI installed and configured. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">Installing the AWS Command Line Interface</a> in the
+                        <em>AWS Command Line Interface User Guide</em>.</p>
+            </li></ul></div>
+        <p>If you don't have or need a local development environment and you prefer to use an
+            Amazon EC2 instance to use Docker, we provide the following steps to launch an Amazon EC2 instance
+            using Amazon Linux 2 and install Docker Engine and the Docker CLI.</p>
+        <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Installing Docker on&#xA;                        Amazon Linux 2" id="create-container-image-install-docker" expanded="false"><p>Docker Desktop is an easy-to-install application for your Mac or Windows
+                    environment that enables you to build and share containerized applications and
+                    microservices. Docker Desktop includes Docker Engine, the Docker CLI client,
+                    Docker Compose, and other tools that are helpful when using Docker with Amazon ECS.
+                    For more information about how to install Docker Desktop on your preferred
+                    operating system, see <a href="https://docs.docker.com/desktop/" rel="noopener noreferrer" target="_blank"><span>Docker
+                        Desktop overview</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="procedure"><p class="title"><b>To install Docker on an Amazon EC2 instance</b></p><ol><li>
+                        <p>Launch an instance with the Amazon Linux 2 AMI. For more information, see
+                                <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html">Launching an
+                                instance</a> in the
+                            <em>Amazon EC2 User Guide for Linux Instances</em>.</p>
+                    </li><li>
+                        <p>Connect to your instance using SSH. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html">Connect to your Linux
+                                instance using SSH</a> in the
+                            <em>Amazon EC2 User Guide for Linux Instances</em>.</p>
+                    </li><li>
+                        <p>Update the installed packages and package cache on your
+                            instance.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">sudo yum update -y</code></code></pre>
+                    </li><li>
+                        <p>Install the most recent Docker Engine package.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">sudo amazon-linux-extras install docker</code></code></pre>
+                        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><span>Important</span></div><div class="awsdocs-note-text"><p>This step assumes you are using the Amazon Linux 2 AMI for your instance.
+                                For all other operating systems, see <a href="https://docs.docker.com/desktop/" rel="noopener noreferrer" target="_blank"><span>Docker Desktop
+                                    overview</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+                    </li><li>
+                        <p>Start the Docker service.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">sudo service docker start</code></code></pre>
+                        <p>(Optional) To ensure that the Docker daemon starts after each system
+                            reboot, run the following command:</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">sudo systemctl enable docker</code></code></pre>
+                    </li><li>
+                        <p>Add the <code class="code">ec2-user</code> to the <code class="code">docker</code> group so you
+                            can execute Docker commands without using <code class="code">sudo</code>.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">sudo usermod -a -G docker ec2-user</code></code></pre>
+                    </li><li>
+                        <p>Log out and log back in again to pick up the new <code class="code">docker</code>
+                            group permissions. You can accomplish this by closing your current SSH
+                            terminal window and reconnecting to your instance in a new one. Your new
+                            SSH session will have the appropriate <code class="code">docker</code> group
+                            permissions.</p>
+                    </li><li>
+                        <p>Verify that you can run Docker commands without
+                            <code class="code">sudo</code>.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker info</code></code></pre>
+                        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><span>Note</span></div><div class="awsdocs-note-text"><p>In some cases, you may need to reboot your instance to provide
+                                permissions for the <code class="code">ec2-user</code> to access the Docker
+                                daemon. Try rebooting your instance if you see the following
+                                error:</p><pre class="programlisting"><div class="code-btn-container"></div><code class="">Cannot connect to the Docker daemon. Is the docker daemon running on this host?</code></pre></div></div>
+                    </li></ol></div></awsui-expandable-section></div>
+     
+        <h2 id="create-container-image-create-image">Create a Docker image</h2>
+        <p>Amazon ECS task definitions use Docker images to launch containers on the container
+            instances in your clusters. In this section, you create a Docker image of a simple web
+            application, and test it on your local system or Amazon EC2 instance, and then push the image
+            to the Amazon ECR container registry so you can use it in an Amazon ECS task definition.</p>
+        <div class="procedure"><p class="title"><b>To create a Docker image of a simple web application</b></p><ol><li>
+                <p>Create a file called <code>Dockerfile</code>. A Dockerfile is a
+                    manifest that describes the base image to use for your Docker image and what you
+                    want installed and running on it. For more information about Dockerfiles, go to
+                    the <a href="https://docs.docker.com/engine/reference/builder/" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                        Reference</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">touch Dockerfile</code></code></pre>
+            </li><li>
+                <p>Edit the <code>Dockerfile</code> you just created and add the
+                    following content.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="Bash/Shell ">FROM ubuntu:18.04
+
+# Install dependencies
+RUN apt-get update &amp;&amp; \
+ apt-get -y install apache2
+
+# Install apache and write hello world message
+RUN echo 'Hello World!' &gt; /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' &gt; /root/run_apache.sh &amp;&amp; \
+ echo 'mkdir -p /var/run/apache2' &gt;&gt; /root/run_apache.sh &amp;&amp; \
+ echo 'mkdir -p /var/lock/apache2' &gt;&gt; /root/run_apache.sh &amp;&amp; \ 
+ echo '/usr/sbin/apache2 -D FOREGROUND' &gt;&gt; /root/run_apache.sh &amp;&amp; \ 
+ chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh</code></pre>
+                <p>This Dockerfile uses the Ubuntu 18.04 image. The <code class="code">RUN</code> instructions
+                    update the package caches, install some software packages for the web server,
+                    and then write the "Hello World!" content to the web server's document root. The
+                        <code class="code">EXPOSE</code> instruction exposes port 80 on the container, and the
+                        <code class="code">CMD</code> instruction starts the web server.</p>
+            </li><li><a id="sample-docker-build-step"></a>
+                <p>Build the Docker image from your Dockerfile.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><span>Note</span></div><div class="awsdocs-note-text"><p>Some versions of Docker may require the full path to your Dockerfile in
+                        the following command, instead of the relative path shown below.</p></div></div>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker build -t hello-world .</code></code></pre>
+            </li><li>
+                <p>Run <b>docker images</b> to verify that the image was created
+                    correctly.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker images --filter reference=hello-world</code></code></pre>
+                <p>Output:</p>
+                <pre class="screen">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              e9ffedc8c286        4 minutes ago       241MB</pre>
+            </li><li>
+                <p>Run the newly built image. The <code class="code">-p 80:80</code> option maps the exposed
+                    port 80 on the container to port 80 on the host system. For more information
+                    about <b>docker run</b>, go to the <a href="https://docs.docker.com/engine/reference/run/" rel="noopener noreferrer" target="_blank"><span>Docker run
+                        reference</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker run -t -i -p 80:80 hello-world</code></code></pre>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><span>Note</span></div><div class="awsdocs-note-text"><p>Output from the Apache web server is displayed in the terminal window. You
+                        can ignore the "<code class="code">Could not reliably determine the server's fully
+                            qualified domain name</code>" message.</p></div></div>
+            </li><li>
+                <p>Open a browser and point to the server that is running Docker and hosting your
+                    container.</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist" type="disc"><li class="listitem">
+                        <p>If you are using an EC2 instance, this is the <b>Public
+                                DNS</b> value for the server, which is the same address you
+                            use to connect to the instance with SSH. Make sure that the security
+                            group for your instance allows inbound traffic on port 80.</p>
+                    </li><li class="listitem">
+                        <p>If you are running Docker locally, point your browser to <a href="http://localhost/" rel="noopener noreferrer" target="_blank" class="unchecked"><span>http://localhost/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                    </li><li class="listitem">
+                        <p>If you are using <b>docker-machine</b> on a Windows or Mac
+                            computer, find the IP address of the VirtualBox VM that is hosting
+                            Docker with the <b>docker-machine ip</b> command,
+                            substituting <code class="replaceable">machine-name</code> with the name of
+                            the docker machine you are using.</p>
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker-machine ip <code class="replaceable">machine-name</code></code></code></pre>
+                    </li></ul></div>
+                <p>You should see a web page with your "Hello World!" statement.</p>
+            </li><li>
+                <p>Stop the Docker container by typing <b>Ctrl + c</b>.</p>
+            </li></ol></div>
+     
+        <h2 id="create-container-image-push-ecr">Push your image to Amazon Elastic Container Registry</h2>
+        <p>Amazon ECR is a managed AWS Docker registry service. You can use the Docker CLI to push,
+            pull, and manage images in your Amazon ECR repositories. For Amazon ECR product details, featured
+            customer case studies, and FAQs, see the <a href="http://aws.amazon.com/ecr" rel="noopener noreferrer" target="_blank"><span>Amazon Elastic Container Registry
+                product detail pages</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+
+        <div class="procedure"><p class="title"><b>To tag your image and push it to Amazon ECR</b></p><ol><li>
+                <p>Create an Amazon ECR repository to store your <code class="code">hello-world</code> image. Note
+                    the <code class="code">repositoryUri</code> in the output.</p>
+                <p>Substitute <code class="code">region</code>, with your AWS Region, for example,
+                        <code class="code">us-east-1</code>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws ecr create-repository --repository-name <code class="replaceable">hello-repository</code> --region <code class="replaceable">region</code></code></code></pre>
+                <p>Output:</p>
+                <pre class="screen"><span>{</span>
+    "repository": <span>{</span>
+        "registryId": "<code class="replaceable">aws_account_id</code>",
+        "repositoryName": "hello-repository",
+        "repositoryArn": "arn:aws:ecr:<code class="replaceable">region</code>:<code class="replaceable">aws_account_id</code>:repository/hello-repository",
+        "createdAt": 1505337806.0,
+        "repositoryUri": "<code class="replaceable">aws_account_id</code>.dkr.ecr.<code class="replaceable">region</code>.amazonaws.com/hello-repository"
+    }
+}</pre>
+            </li><li>
+                <p>Tag the <code class="code">hello-world</code> image with the <code class="code">repositoryUri</code>
+                    value from the previous step.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker tag hello-world <code class="replaceable">aws_account_id</code>.dkr.ecr.<code class="replaceable">region</code>.amazonaws.com/<code class="replaceable">hello-repository</code></code></code></pre>
+            </li><li>
+                <p>Run the <b>aws ecr get-login-password</b> command. Specify the
+                    registry URI you want to authenticate to. For more information, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth">Registry
+                        Authentication</a> in the <em>Amazon Elastic Container Registry User Guide</em>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker login -u AWS -p $(aws ecr get-login-password --region <code class="replaceable">REGION</code>) <code class="replaceable"><code class="replaceable">aws_account_id</code></code>.dkr.ecr.<code class="replaceable">REGION</code>.amazonaws.com</code></code></pre>
+                <p>Output:</p>
+                <pre class="screen">Login Succeeded</pre>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><span>Important</span></div><div class="awsdocs-note-text"><p>If you receive an error, install or upgrade to the latest version of the
+                        AWS CLI. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">Installing the AWS Command Line Interface</a> in the
+                            <em>AWS Command Line Interface User Guide</em>.</p></div></div>
+            </li><li>
+                <p>Push the image to Amazon ECR with the <code class="code">repositoryUri</code> value from the
+                    earlier step.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">docker push <code class="replaceable">aws_account_id</code>.dkr.ecr.<code class="replaceable">region</code>.amazonaws.com/<code class="replaceable">hello-repository</code></code></code></pre>
+            </li></ol></div>
+     
+        <h2 id="create-container-image-cleanup">Clean up</h2>
+        <p>To continue on with creating an Amazon ECS task definition and launching a task with your
+            container image, skip to the <a href="#create-container-image-next-steps">Next steps</a>. When you are done experimenting
+            with your Amazon ECR image, you can delete the repository so you are not charged for image
+            storage.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws ecr delete-repository --repository-name <code class="replaceable">hello-repository</code> --region <code class="replaceable">region</code> --force</code></code></pre>
+     
+        <h2 id="create-container-image-next-steps">Next steps</h2>
+        <p>After you have created and pushed your container image to Amazon ECR, you should consider
+            the following next steps.</p>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist" type="disc"><li class="listitem">
+                <p><a href="./getting-started-console.html">Getting started with Amazon ECS using the classic console</a></p>
+            </li><li class="listitem">
+                <p><a href="./ECS_AWSCLI_Fargate.html">Tutorial: Creating a cluster with a
+            Fargate Linux task using the AWS CLI</a></p>
+            </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./get-set-up-for-amazon-ecs.html">Set up</div><div id="next" class="next-link" accesskey="n" href="./getting-started-aws-copilot-cli.html">Using AWS Copilot</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AmazonEC2ContainerService&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/create-container-image.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AmazonEC2ContainerService&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/create-container-image.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

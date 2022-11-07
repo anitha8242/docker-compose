@@ -1,0 +1,687 @@
+	<!DOCTYPE html>
+		<!--[if IE 8]>
+	<html class="ie ie8" lang="en-US"> <![endif]-->
+	<!--[if IE 9]>
+	<html class="ie ie9" lang="en-US"> <![endif]-->
+	<!--[if gt IE 9]><!-->
+<html lang="en-US"> <!--<![endif]-->
+	<head>
+				<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="pingback" href="https://acloudxpert.com/xmlrpc.php"/>
+
+		<!-- Manifest added by SuperPWA - Progressive Web Apps Plugin For WordPress -->
+<link rel="manifest" href="/superpwa-manifest.json">
+<link rel="prefetch" href="/superpwa-manifest.json">
+<meta name="theme-color" content="#D5E0EB">
+<!-- / SuperPWA.com -->
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.3 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>How To Install Docker Compose On Amazon Linux AMI - A Cloud Xpert</title>
+	<link rel="canonical" href="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="How To Install Docker Compose On Amazon Linux AMI - A Cloud Xpert" />
+	<meta property="og:description" content="Create EC2 with Amazon Linux AMI Install Docker over it, click here for help Now to install docker-compose, run sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose &gt; /dev/null For permission sudo chmod +x /usr/local/bin/docker-compose Create a symbolic link ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose Check docker-compose version: docker-compose --version" />
+	<meta property="og:url" content="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/" />
+	<meta property="og:site_name" content="A Cloud Xpert" />
+	<meta property="article:published_time" content="2019-01-02T18:40:58+00:00" />
+	<meta property="article:modified_time" content="2019-01-03T17:12:03+00:00" />
+	<meta property="og:image" content="https://acloudxpert.com/wp-content/uploads/2019/01/Docker-aws-ami.png" />
+	<meta property="og:image:width" content="1920" />
+	<meta property="og:image:height" content="1080" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="admin" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://acloudxpert.com/#website","url":"https://acloudxpert.com/","name":"A Cloud Xpert","description":"AWS, Azure, GCP","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://acloudxpert.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#primaryimage","inLanguage":"en-US","url":"https://acloudxpert.com/wp-content/uploads/2019/01/Docker-aws-ami.png","contentUrl":"https://acloudxpert.com/wp-content/uploads/2019/01/Docker-aws-ami.png","width":1920,"height":1080},{"@type":"WebPage","@id":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#webpage","url":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/","name":"How To Install Docker Compose On Amazon Linux AMI - A Cloud Xpert","isPartOf":{"@id":"https://acloudxpert.com/#website"},"primaryImageOfPage":{"@id":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#primaryimage"},"datePublished":"2019-01-02T18:40:58+00:00","dateModified":"2019-01-03T17:12:03+00:00","author":{"@id":"https://acloudxpert.com/#/schema/person/d3dc5c908f5087b061f29bc60fafc1d1"},"breadcrumb":{"@id":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/"]}]},{"@type":"BreadcrumbList","@id":"https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://acloudxpert.com/"},{"@type":"ListItem","position":2,"name":"How To Install Docker Compose On Amazon Linux AMI"}]},{"@type":"Person","@id":"https://acloudxpert.com/#/schema/person/d3dc5c908f5087b061f29bc60fafc1d1","name":"admin","image":{"@type":"ImageObject","@id":"https://acloudxpert.com/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/9914acac3cf38ce950dbc31fc6986ec4?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/9914acac3cf38ce950dbc31fc6986ec4?s=96&d=mm&r=g","caption":"admin"},"url":"https://acloudxpert.com/author/admin/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="A Cloud Xpert &raquo; Feed" href="https://acloudxpert.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="A Cloud Xpert &raquo; Comments Feed" href="https://acloudxpert.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="A Cloud Xpert &raquo; How To Install Docker Compose On Amazon Linux AMI Comments Feed" href="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/acloudxpert.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.6"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://acloudxpert.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.6' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-job-manager-job-listings-css'  href='https://acloudxpert.com/wp-content/plugins/wp-job-manager/assets/dist/css/job-listings.css?ver=d866e43503c5e047c6b0be0a9557cf8e' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='https://acloudxpert.com/wp-includes/css/dashicons.min.css?ver=5.8.6' type='text/css' media='all' />
+<link rel='stylesheet' id='better-framework-main-fonts-css'  href='https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500,400italic' type='text/css' media='all' />
+<script type='text/javascript' src='https://acloudxpert.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://acloudxpert.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://acloudxpert.com/wp-content/themes/publisher/includes/libs/better-framework/assets/js/html5shiv.min.js?ver=3.10.17' id='bf-html5shiv-js'></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://acloudxpert.com/wp-content/themes/publisher/includes/libs/better-framework/assets/js/respond.min.js?ver=3.10.17' id='bf-respond-js'></script>
+<![endif]-->
+<script type='text/javascript' src='https://acloudxpert.com/wp-content/plugins/better-adsmanager/js/advertising.min.js?ver=1.17.0' id='better-advertising-js'></script>
+<link rel="https://api.w.org/" href="https://acloudxpert.com/wp-json/" /><link rel="alternate" type="application/json" href="https://acloudxpert.com/wp-json/wp/v2/posts/870" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://acloudxpert.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://acloudxpert.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.6" />
+<link rel='shortlink' href='https://acloudxpert.com/?p=870' />
+<link rel="alternate" type="application/json+oembed" href="https://acloudxpert.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://acloudxpert.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F&#038;format=xml" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-5871799497965336",
+          enable_page_level_ads: true
+     });
+</script>
+
+<meta name="google-site-verification" content="kHo5lKMKBHTyBf0r23sB2XBlWYrFDwk0or-krCFx4V4" />
+<meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://acloudxpert.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->      <meta name="onesignal" content="wordpress-plugin"/>
+            <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+                      OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+                      OneSignal.SERVICE_WORKER_PARAM = { scope: "/" };
+        OneSignal.setDefaultNotificationUrl("https://acloudxpert.com");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '74490f16-b0f8-4520-94b3-b0503c0dec59';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "";
+oneSignal_options['welcomeNotification']['message'] = "";
+oneSignal_options['path'] = "https://acloudxpert.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['promptOptions'] = { };
+                OneSignal.init(window._oneSignalInitOptions);
+                OneSignal.showSlidedownPrompt();      });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<script type="application/ld+json">{
+    "@context": "http:\/\/schema.org\/",
+    "@type": "Organization",
+    "@id": "#organization",
+    "url": "https:\/\/acloudxpert.com\/",
+    "name": "A Cloud Xpert",
+    "description": "AWS, Azure, GCP"
+}</script>
+<script type="application/ld+json">{
+    "@context": "http:\/\/schema.org\/",
+    "@type": "WebSite",
+    "name": "A Cloud Xpert",
+    "alternateName": "AWS, Azure, GCP",
+    "url": "https:\/\/acloudxpert.com\/"
+}</script>
+<script type="application/ld+json">{
+    "@context": "http:\/\/schema.org\/",
+    "@type": "BlogPosting",
+    "headline": "How To Install Docker Compose On Amazon Linux AMI",
+    "description": " \tCreate EC2 with Amazon Linux AMI \tInstall Docker over it, click here for help \tNow to install docker-compose, runsudo curl -L https:\/\/github.com\/docker\/compose\/releases\/download\/1.21.0\/docker-compose-`uname -s`-`uname -m` | sudo tee \/usr\/local\/bin\/",
+    "datePublished": "2019-01-02",
+    "dateModified": "2019-01-03",
+    "author": {
+        "@type": "Person",
+        "@id": "#person-admin",
+        "name": "admin"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https:\/\/acloudxpert.com\/wp-content\/uploads\/2019\/01\/Docker-aws-ami.png",
+        "width": 1920,
+        "height": 1080
+    },
+    "interactionStatistic": [
+        {
+            "@type": "InteractionCounter",
+            "interactionType": "http:\/\/schema.org\/CommentAction",
+            "userInteractionCount": "0"
+        }
+    ],
+    "publisher": {
+        "@id": "#organization"
+    },
+    "mainEntityOfPage": "https:\/\/acloudxpert.com\/how-to-install-docker-compose-on-amazon-linux-ami\/"
+}</script>
+<link rel='stylesheet' id='bf-minifed-css-1' href='https://acloudxpert.com/wp-content/bs-booster-cache/5f157f60c9d623e13c57aed430eae659.css' type='text/css' media='all' />
+<link rel='stylesheet' id='7.7.0-1652699906' href='https://acloudxpert.com/wp-content/bs-booster-cache/2154e1742a49b176c3e9f7bcc5b467cc.css' type='text/css' media='all' />
+
+<!-- BetterFramework Head Inline CSS -->
+<style>
+.content-column>.listing-text-3 .listing-item-text-3 {
+    margin-bottom: 1px;
+    padding-bottom: 1px!important;
+}
+
+.listing-item-text-3 .item-inner {
+    padding-bottom: 2px!important;
+    border-bottom: 1px solid #f0f0f0;
+    border-bottom-color: rgba(0,0,0,.06);
+    position: relative;
+}
+
+</style>
+<!-- /BetterFramework Head Inline CSS-->
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>	</head>
+
+<body class="post-template-default single single-post postid-870 single-format-standard wp-schema-pro-1.7.0 bs-theme bs-publisher bs-publisher-clean-magazine active-light-box active-top-line ltr close-rh page-layout-2-col-right boxed active-sticky-sidebar main-menu-sticky-smart active-ajax-search single-prim-cat-1280 single-cat-1280 single-cat-1281  bs-show-ha bs-show-ha-a publisher wpb-js-composer js-comp-ver-5.4.7 vc_responsive bs-ll-a" dir="ltr">
+		<div class="main-wrap content-main-wrap">
+			<header id="header" class="site-header header-style-2 boxed" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
+
+				<div class="header-inner">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="row-height">
+							<div class="logo-col col-xs-4">
+								<div class="col-inside">
+									<div id="site-branding" class="site-branding">
+	<p  id="site-title" class="logo h1 text-logo">
+	<a href="https://acloudxpert.com/" itemprop="url" rel="home">
+		A Cloud Xpert	</a>
+</p>
+</div><!-- .site-branding -->
+								</div>
+							</div>
+															<div class="sidebar-col col-xs-8">
+									<div class="col-inside">
+										<aside id="sidebar" class="sidebar" role="complementary" itemscope="itemscope" itemtype="https://schema.org/WPSideBar">
+											<div class="bsac bsac-clearfix better-ads-pubadban better-ads-show-desktop better-ads-show-tablet-portrait better-ads-show-tablet-landscape better-ads-show-phone location-header_aside_logo bsac-align-right bsac-column-1"><div id="bsac-2319-188872862" class="bsac-container bsac-type-code " itemscope="" itemtype="https://schema.org/WPAdBlock" data-adid="2319" data-type="code"><span id="bsac-2319-188872862-place"></span><script type="text/javascript">var betterads_screen_width = document.body.clientWidth;betterads_el = document.getElementById('bsac-2319-188872862');             if (betterads_el.getBoundingClientRect().width) {     betterads_el_width_raw = betterads_el_width = betterads_el.getBoundingClientRect().width;    } else {     betterads_el_width_raw = betterads_el_width = betterads_el.offsetWidth;    }        var size = ["125", "125"];    if ( betterads_el_width >= 728 )      betterads_el_width = ["728", "90"];    else if ( betterads_el_width >= 468 )     betterads_el_width = ["468", "60"];    else if ( betterads_el_width >= 336 )     betterads_el_width = ["336", "280"];    else if ( betterads_el_width >= 300 )     betterads_el_width = ["300", "250"];    else if ( betterads_el_width >= 250 )     betterads_el_width = ["250", "250"];    else if ( betterads_el_width >= 200 )     betterads_el_width = ["200", "200"];    else if ( betterads_el_width >= 180 )     betterads_el_width = ["180", "150"]; if ( betterads_screen_width >= 1140 ) { document.getElementById('bsac-2319-188872862-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="2541866307" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 1019  && betterads_screen_width < 1140 ) { document.getElementById('bsac-2319-188872862-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="2541866307" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 768  && betterads_screen_width < 1019 ) { document.getElementById('bsac-2319-188872862-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="2541866307" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width < 768 ) { document.getElementById('bsac-2319-188872862-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="2541866307" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}</script></div></div>										</aside>
+									</div>
+								</div>
+														</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="menu-main" class="menu main-menu-wrapper show-search-item menu-actions-btn-width-1" role="navigation" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+	<div class="main-menu-inner">
+		<div class="content-wrap">
+			<div class="container">
+
+				<nav class="main-menu-container">
+					<ul id="main-navigation" class="main-menu menu bsm-pure clearfix">
+						<li id="menu-item-18" class="menu-have-icon menu-icon-type-fontawesome menu-item menu-item-type-post_type menu-item-object-page menu-item-home better-anim-fade menu-item-18"><a href="https://acloudxpert.com/"><i class="bf-icon  fa fa-home"></i>Home</a></li>
+<li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-17 better-anim-fade menu-item-19"><a href="https://acloudxpert.com/aws/">AWS</a>
+<ul class="sub-menu">
+	<li id="menu-item-1565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-19 better-anim-fade menu-item-1565"><a href="https://acloudxpert.com/aws/tutorials/">Tutorials</a></li>
+	<li id="menu-item-1568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-1272 better-anim-fade menu-item-1568"><a href="https://acloudxpert.com/aws/how-to/">How To</a></li>
+	<li id="menu-item-1566" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-73 better-anim-fade menu-item-1566"><a href="https://acloudxpert.com/aws/services/">Services</a></li>
+	<li id="menu-item-1567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-16 better-anim-fade menu-item-1567"><a href="https://acloudxpert.com/aws/news/">News</a></li>
+	<li id="menu-item-1569" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-1173 better-anim-fade menu-item-1569"><a href="https://acloudxpert.com/aws/use-cases/">Use Cases</a></li>
+	<li id="menu-item-1760" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-2780 better-anim-fade menu-item-1760"><a href="https://acloudxpert.com/aws/aws-certification-exam-practice-questions/">Exam Questions</a></li>
+	<li id="menu-item-2513" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-3011 better-anim-fade menu-item-2513"><a href="https://acloudxpert.com/aws/aws-interview-questions/">Interview Questions</a></li>
+	<li id="menu-item-1570" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-2604 better-anim-fade menu-item-1570"><a href="https://acloudxpert.com/aws/aws-resume-points/">Resume Points</a></li>
+</ul>
+</li>
+<li id="menu-item-1595" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-347 better-anim-fade menu-item-1595"><a href="https://acloudxpert.com/azure/">Azure</a>
+<ul class="sub-menu">
+	<li id="menu-item-2796" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-3280 better-anim-fade menu-item-2796"><a href="https://acloudxpert.com/azure/azure-resume-points/">Resume Points</a></li>
+	<li id="menu-item-5722" class="menu-item menu-item-type-post_type menu-item-object-page better-anim-fade menu-item-5722"><a href="https://acloudxpert.com/azure-interview-question/">Azure Interview Question</a></li>
+</ul>
+</li>
+<li id="menu-item-1599" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-term-2704 better-anim-fade menu-item-1599"><a href="https://acloudxpert.com/devops/">DevOps</a>
+<ul class="sub-menu">
+	<li id="menu-item-3454" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-4409 better-anim-fade menu-item-3454"><a href="https://acloudxpert.com/devops/projects/">Projects</a></li>
+	<li id="menu-item-1600" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-2705 better-anim-fade menu-item-1600"><a href="https://acloudxpert.com/devops/tools/">Tools</a></li>
+	<li id="menu-item-5861" class="menu-item menu-item-type-post_type menu-item-object-page better-anim-fade menu-item-5861"><a href="https://acloudxpert.com/devops-interview-question/">DevOps Interview Question</a></li>
+</ul>
+</li>
+<li id="menu-item-1601" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-term-1280 better-anim-fade menu-item-1601"><a href="https://acloudxpert.com/docker/">Docker</a>
+<ul class="sub-menu">
+	<li id="menu-item-1602" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-term-1281 better-anim-fade menu-item-1602"><a href="https://acloudxpert.com/docker/how-to-docker/">How To</a></li>
+</ul>
+</li>
+<li id="menu-item-1603" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-term-657 better-anim-fade menu-item-1603"><a href="https://acloudxpert.com/gcp/">GCP</a></li>
+					</ul><!-- #main-navigation -->
+											<div class="menu-action-buttons width-1">
+															<div class="search-container close">
+									<span class="search-handler"><i class="fa fa-search"></i></span>
+
+									<div class="search-box clearfix">
+										<form role="search" method="get" class="search-form clearfix" action="https://acloudxpert.com">
+	<input type="search" class="search-field"
+	       placeholder="Search..."
+	       value="" name="s"
+	       title="Search for:"
+	       autocomplete="off">
+	<input type="submit" class="search-submit" value="Search">
+</form><!-- .search-form -->
+									</div>
+								</div>
+														</div>
+										</nav><!-- .main-menu-container -->
+
+			</div>
+		</div>
+	</div>
+</div><!-- .menu -->
+	</header><!-- .header -->
+	<div class="rh-header clearfix dark deferred-block-exclude">
+		<div class="rh-container clearfix">
+
+			<div class="menu-container close">
+				<span class="menu-handler"><span class="lines"></span></span>
+			</div><!-- .menu-container -->
+
+			<div class="logo-container rh-text-logo">
+				<a href="https://acloudxpert.com/" itemprop="url" rel="home">
+					A Cloud Xpert				</a>
+			</div><!-- .logo-container -->
+		</div><!-- .rh-container -->
+	</div><!-- .rh-header -->
+<nav role="navigation" aria-label="Breadcrumbs" class="bf-breadcrumb clearfix bc-top-style"><div class="container bf-breadcrumb-container"><ul class="bf-breadcrumb-items" itemscope itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="3" /><meta name="itemListOrder" content="Ascending" /><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="bf-breadcrumb-item bf-breadcrumb-begin"><a itemprop="item" href="https://acloudxpert.com" rel="home"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="bf-breadcrumb-item"><a itemprop="item" href="https://acloudxpert.com/docker/" ><span itemprop="name">Docker</span></a><meta itemprop="position" content="2" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="bf-breadcrumb-item bf-breadcrumb-end"><span itemprop="name">How To Install Docker Compose On Amazon Linux AMI</span><meta itemprop="item" content="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/"/><meta itemprop="position" content="3" /></li></ul></div></nav><div class="content-wrap">
+		<main id="content" class="content-container">
+
+		<div class="container layout-2-col layout-2-col-1 layout-right-sidebar layout-bc-before post-template-9">
+
+			<div class="row main-section">
+										<div class="col-sm-8 content-column">
+							<div class="single-container">
+																<article id="post-870" class="post-870 post type-post status-publish format-standard has-post-thumbnail  category-docker category-how-to-docker single-post-content">
+									<div class="post-header-inner">
+										<div class="post-header-title">
+											<div class="term-badges floated"><span class="term-badge term-1280"><a href="https://acloudxpert.com/docker/">Docker</a></span><span class="term-badge term-1281"><a href="https://acloudxpert.com/docker/how-to-docker/">How To</a></span></div>											<h1 class="single-post-title">
+												<span class="post-title" itemprop="headline">How To Install Docker Compose On Amazon Linux AMI</span>
+											</h1>
+											<div class="post-meta single-post-meta">
+			<a href="https://acloudxpert.com/author/admin/"
+		   title="Browse Author Articles"
+		   class="post-author-a post-author-avatar">
+			<img alt=''  data-src='https://secure.gravatar.com/avatar/9914acac3cf38ce950dbc31fc6986ec4?s=26&d=mm&r=g' class='avatar avatar-26 photo avatar-default' height='26' width='26' /><span class="post-author-name">By <b>admin</b></span>		</a>
+					<span class="time"><time class="post-published updated"
+			                         datetime="2019-01-03T17:12:03+00:00">Last updated <b>Jan 3, 2019</b></time></span>
+			</div>
+										</div>
+									</div>
+											<div class="post-share single-post-share top-share clearfix style-1">
+			<div class="post-share-btn-group">
+				<a href="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#respond" class="post-share-btn post-share-btn-comments comments" title="Leave a comment on: &ldquo;How To Install Docker Compose On Amazon Linux AMI&rdquo;"><i class="bf-icon fa fa-comments" aria-hidden="true"></i> <b class="number">0</b></a><span class="views post-share-btn post-share-btn-views rank-3500" data-bpv-post="870"><i class="bf-icon  bsfi-fire-4"></i> <b class="number">44,009</b></span>			</div>
+						<div class="share-handler-wrap ">
+				<span class="share-handler post-share-btn rank-default">
+					<i class="bf-icon  fa fa-share-alt"></i>						<b class="text">Share</b>
+										</span>
+				<span class="social-item facebook"><a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-facebook','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-facebook"></i></span></a></span><span class="social-item twitter"><a href="https://twitter.com/share?text=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI&url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-twitter','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-twitter"></i></span></a></span><span class="social-item google_plus"><a href="https://plus.google.com/share?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-google_plus','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-google"></i></span></a></span><span class="social-item reddit"><a href="https://reddit.com/submit?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F&title=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-reddit','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-reddit-alien"></i></span></a></span><span class="social-item whatsapp"><a href="whatsapp://send?text=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI %0A%0A https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-whatsapp','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-whatsapp"></i></span></a></span><span class="social-item pinterest"><a href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F&media=https://acloudxpert.com/wp-content/uploads/2019/01/Docker-aws-ami.png&description=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-pinterest','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-pinterest"></i></span></a></span><span class="social-item email"><a href="mailto:?subject=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI&body=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-email','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-envelope-open"></i></span></a></span></div>		</div>
+											<div class="entry-content clearfix single-post-content">
+										<div class="bsac bsac-clearfix bsac-post-top bsac-float-center bsac-align-center bsac-column-1"><div id="bsac-2320-2026463513" class="bsac-container bsac-type-code " itemscope="" itemtype="https://schema.org/WPAdBlock" data-adid="2320" data-type="code"><span id="bsac-2320-2026463513-place"></span><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script type="text/javascript">var betterads_screen_width = document.body.clientWidth;betterads_el = document.getElementById('bsac-2320-2026463513');             if (betterads_el.getBoundingClientRect().width) {     betterads_el_width_raw = betterads_el_width = betterads_el.getBoundingClientRect().width;    } else {     betterads_el_width_raw = betterads_el_width = betterads_el.offsetWidth;    }        var size = ["125", "125"];    if ( betterads_el_width >= 728 )      betterads_el_width = ["728", "90"];    else if ( betterads_el_width >= 468 )     betterads_el_width = ["468", "60"];    else if ( betterads_el_width >= 336 )     betterads_el_width = ["336", "280"];    else if ( betterads_el_width >= 300 )     betterads_el_width = ["300", "250"];    else if ( betterads_el_width >= 250 )     betterads_el_width = ["250", "250"];    else if ( betterads_el_width >= 200 )     betterads_el_width = ["200", "200"];    else if ( betterads_el_width >= 180 )     betterads_el_width = ["180", "150"]; if ( betterads_screen_width >= 1140 ) { document.getElementById('bsac-2320-2026463513-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="7991549823" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 1019  && betterads_screen_width < 1140 ) { document.getElementById('bsac-2320-2026463513-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="7991549823" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 768  && betterads_screen_width < 1019 ) { document.getElementById('bsac-2320-2026463513-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="7991549823" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width < 768 ) { document.getElementById('bsac-2320-2026463513-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="7991549823" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}</script></div></div><ol>
+<li>Create EC2 with Amazon Linux AMI</li>
+<li>Install Docker over it, <a href="https://acloudxpert.com/how-toinstall-docker-on-amazon-linux-ami/">click here</a> for help</li>
+<li>Now to install docker-compose, run
+<pre>sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose &gt; /dev/null</pre>
+</li>
+<li>For permission
+<pre>sudo chmod +x /usr/local/bin/docker-compose</pre>
+</li>
+<li>Create a symbolic link
+<pre>ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose</pre>
+</li>
+<li>Check docker-compose version:
+<pre>docker-compose --version</pre>
+</li>
+</ol>
+<div class="bsac bsac-clearfix bsac-post-bottom bsac-float-center bsac-align-center bsac-column-1"><div id="bsac-2321-2050336208" class="bsac-container bsac-type-code " itemscope="" itemtype="https://schema.org/WPAdBlock" data-adid="2321" data-type="code"><span id="bsac-2321-2050336208-place"></span><script type="text/javascript">var betterads_screen_width = document.body.clientWidth;betterads_el = document.getElementById('bsac-2321-2050336208');             if (betterads_el.getBoundingClientRect().width) {     betterads_el_width_raw = betterads_el_width = betterads_el.getBoundingClientRect().width;    } else {     betterads_el_width_raw = betterads_el_width = betterads_el.offsetWidth;    }        var size = ["125", "125"];    if ( betterads_el_width >= 728 )      betterads_el_width = ["728", "90"];    else if ( betterads_el_width >= 468 )     betterads_el_width = ["468", "60"];    else if ( betterads_el_width >= 336 )     betterads_el_width = ["336", "280"];    else if ( betterads_el_width >= 300 )     betterads_el_width = ["300", "250"];    else if ( betterads_el_width >= 250 )     betterads_el_width = ["250", "250"];    else if ( betterads_el_width >= 200 )     betterads_el_width = ["200", "200"];    else if ( betterads_el_width >= 180 )     betterads_el_width = ["180", "150"]; if ( betterads_screen_width >= 1140 ) { document.getElementById('bsac-2321-2050336208-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="5770664878" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 1019  && betterads_screen_width < 1140 ) { document.getElementById('bsac-2321-2050336208-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="5770664878" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 768  && betterads_screen_width < 1019 ) { document.getElementById('bsac-2321-2050336208-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="5770664878" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width < 768 ) { document.getElementById('bsac-2321-2050336208-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="5770664878" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}</script></div></div>									</div>
+											<div class="post-share single-post-share bottom-share clearfix style-1">
+			<div class="post-share-btn-group">
+				<a href="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/#respond" class="post-share-btn post-share-btn-comments comments" title="Leave a comment on: &ldquo;How To Install Docker Compose On Amazon Linux AMI&rdquo;"><i class="bf-icon fa fa-comments" aria-hidden="true"></i> <b class="number">0</b></a><span class="views post-share-btn post-share-btn-views rank-3500" data-bpv-post="870"><i class="bf-icon  bsfi-fire-4"></i> <b class="number">44,009</b></span>			</div>
+						<div class="share-handler-wrap ">
+				<span class="share-handler post-share-btn rank-default">
+					<i class="bf-icon  fa fa-share-alt"></i>						<b class="text">Share</b>
+										</span>
+				<span class="social-item facebook has-title"><a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-facebook','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-facebook"></i></span><span class="item-title">Facebook</span></a></span><span class="social-item twitter has-title"><a href="https://twitter.com/share?text=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI&url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-twitter','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-twitter"></i></span><span class="item-title">Twitter</span></a></span><span class="social-item google_plus has-title"><a href="https://plus.google.com/share?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-google_plus','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-google"></i></span><span class="item-title">Google+</span></a></span><span class="social-item reddit has-title"><a href="https://reddit.com/submit?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F&title=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-reddit','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-reddit-alien"></i></span><span class="item-title">ReddIt</span></a></span><span class="social-item whatsapp has-title"><a href="whatsapp://send?text=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI %0A%0A https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-whatsapp','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-whatsapp"></i></span><span class="item-title">WhatsApp</span></a></span><span class="social-item pinterest has-title"><a href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F&media=https://acloudxpert.com/wp-content/uploads/2019/01/Docker-aws-ami.png&description=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-pinterest','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-pinterest"></i></span><span class="item-title">Pinterest</span></a></span><span class="social-item email has-title"><a href="mailto:?subject=How+To+Install+Docker+Compose+On+Amazon+Linux+AMI&body=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F" target="_blank" rel="nofollow noreferrer" class="bs-button-el" onclick="window.open(this.href, 'share-email','left=50,top=50,width=600,height=320,toolbar=0'); return false;"><span class="icon"><i class="bf-icon fa fa-envelope-open"></i></span><span class="item-title">Email</span></a></span></div>		</div>
+										</article>
+								<section class="post-author clearfix">
+		<a href="https://acloudxpert.com/author/admin/"
+	   title="Browse Author Articles">
+		<span class="post-author-avatar" itemprop="image"><img alt=''  data-src='https://secure.gravatar.com/avatar/9914acac3cf38ce950dbc31fc6986ec4?s=80&d=mm&r=g' class='avatar avatar-80 photo avatar-default' height='80' width='80' /></span>
+	</a>
+
+	<div class="author-title heading-typo">
+		<a class="post-author-url" href="https://acloudxpert.com/author/admin/"><span class="post-author-name">admin</span></a>
+
+		
+			</div>
+
+	<div class="author-links">
+				<ul class="author-social-icons">
+					</ul>
+			</div>
+
+	<div class="post-author-bio" itemprop="description">
+			</div>
+
+</section>
+	<section class="next-prev-post clearfix">
+
+					<div class="prev-post">
+				<p class="pre-title heading-typo"><i
+							class="fa fa-arrow-left"></i> Prev Post				</p>
+				<p class="title heading-typo"><a href="https://acloudxpert.com/how-toinstall-docker-on-amazon-linux-ami/" rel="prev">How To Install Docker On Amazon Linux AMI</a></p>
+			</div>
+		
+					<div class="next-post">
+				<p class="pre-title heading-typo">Next Post <i
+							class="fa fa-arrow-right"></i></p>
+				<p class="title heading-typo"><a href="https://acloudxpert.com/creating-todo-application-with-serverless-application-repository/" rel="next">Creating ToDo Application with Serverless Application Repository</a></p>
+			</div>
+		
+	</section>
+							</div>
+							<div class="post-related">
+
+	<div class="section-heading sh-t1 sh-s1 multi-tab">
+
+					<a href="#relatedposts_60504087_1" class="main-link active"
+			   data-toggle="tab">
+				<span
+						class="h-text related-posts-heading">You might also like</span>
+			</a>
+			<a href="#relatedposts_60504087_2" class="other-link" data-toggle="tab"
+			   data-deferred-event="shown.bs.tab"
+			   data-deferred-init="relatedposts_60504087_2">
+				<span
+						class="h-text related-posts-heading">More from author</span>
+			</a>
+		
+	</div>
+
+		<div class="tab-content">
+		<div class="tab-pane bs-tab-anim bs-tab-animated active"
+		     id="relatedposts_60504087_1">
+			
+					<div class="bs-pagination-wrapper main-term-none next_prev ">
+			<div class="listing listing-thumbnail listing-tb-2 clearfix  scolumns-3 simple-grid include-last-mobile">
+	<div  class="post-6011 type-post format-standard has-post-thumbnail   listing-item listing-item-thumbnail listing-item-tb-2 main-term-1280">
+<div class="item-inner clearfix">
+			<div class="featured featured-type-featured-image">
+			<div class="term-badges floated"><span class="term-badge term-1280"><a href="https://acloudxpert.com/docker/">Docker</a></span></div>			<a  title="Docker Swarm Lab Guide" data-src="https://acloudxpert.com/wp-content/themes/publisher/images/default-thumb/publisher-sm.png"					class="img-holder" href="https://acloudxpert.com/docker-swarm-lab-guide/"></a>
+					</div>
+	<p class="title">	<a class="post-url" href="https://acloudxpert.com/docker-swarm-lab-guide/" title="Docker Swarm Lab Guide">
+			<span class="post-title">
+				Docker Swarm Lab Guide			</span>
+	</a>
+	</p></div>
+</div >
+<div  class="post-5089 type-post format-standard has-post-thumbnail   listing-item listing-item-thumbnail listing-item-tb-2 main-term-1280">
+<div class="item-inner clearfix">
+			<div class="featured featured-type-featured-image">
+			<div class="term-badges floated"><span class="term-badge term-1280"><a href="https://acloudxpert.com/docker/">Docker</a></span></div>			<a  title="Running Grafana as a Container" data-src="https://acloudxpert.com/wp-content/themes/publisher/images/default-thumb/publisher-sm.png"					class="img-holder" href="https://acloudxpert.com/running-grafana-as-a-container/"></a>
+					</div>
+	<p class="title">	<a class="post-url" href="https://acloudxpert.com/running-grafana-as-a-container/" title="Running Grafana as a Container">
+			<span class="post-title">
+				Running Grafana as a Container			</span>
+	</a>
+	</p></div>
+</div >
+<div  class="post-5086 type-post format-standard has-post-thumbnail   listing-item listing-item-thumbnail listing-item-tb-2 main-term-5487">
+<div class="item-inner clearfix">
+			<div class="featured featured-type-featured-image">
+			<div class="term-badges floated"><span class="term-badge term-5487"><a href="https://acloudxpert.com/prometheus/">Prometheus</a></span></div>			<a  title="Running Prometheus Alert Manager as a Container" data-src="https://acloudxpert.com/wp-content/themes/publisher/images/default-thumb/publisher-sm.png"					class="img-holder" href="https://acloudxpert.com/running-prometheus-alert-manager-as-a-container/"></a>
+					</div>
+	<p class="title">	<a class="post-url" href="https://acloudxpert.com/running-prometheus-alert-manager-as-a-container/" title="Running Prometheus Alert Manager as a Container">
+			<span class="post-title">
+				Running Prometheus Alert Manager as a Container			</span>
+	</a>
+	</p></div>
+</div >
+<div  class="post-5084 type-post format-standard has-post-thumbnail   listing-item listing-item-thumbnail listing-item-tb-2 main-term-1280">
+<div class="item-inner clearfix">
+			<div class="featured featured-type-featured-image">
+			<div class="term-badges floated"><span class="term-badge term-1280"><a href="https://acloudxpert.com/docker/">Docker</a></span></div>			<a  title="Running Prometheus as a Container" data-src="https://acloudxpert.com/wp-content/themes/publisher/images/default-thumb/publisher-sm.png"					class="img-holder" href="https://acloudxpert.com/running-prometheus-as-a-container/"></a>
+					</div>
+	<p class="title">	<a class="post-url" href="https://acloudxpert.com/running-prometheus-as-a-container/" title="Running Prometheus as a Container">
+			<span class="post-title">
+				Running Prometheus as a Container			</span>
+	</a>
+	</p></div>
+</div >
+	</div>
+	
+	</div><div class="bs-pagination bs-ajax-pagination next_prev main-term-none clearfix">
+			<script>var bs_ajax_paginate_2115904794 = '{"query":{"paginate":"next_prev","count":4,"post_type":"post","posts_per_page":4,"post__not_in":[870],"ignore_sticky_posts":1,"post_status":["publish","private"],"category__in":[1280,1281],"_layout":{"state":"1|1|0","page":"2-col-right"}},"type":"wp_query","view":"Publisher::fetch_related_posts","current_page":1,"ajax_url":"\/wp-admin\/admin-ajax.php","remove_duplicates":"0","paginate":"next_prev","_layout":{"state":"1|1|0","page":"2-col-right"},"_bs_pagin_token":"0d1f58a"}';</script>				<a href="#prev-2115904794" class="btn-bs-pagination prev disabled" rel="prev" data-id="2115904794"
+				   title="Previous">
+					<i class="fa fa-angle-left"
+					   aria-hidden="true"></i> Prev				</a>
+				<a href="#next-2115904794"  rel="next" class="btn-bs-pagination next"
+				   data-id="2115904794" title="Next">
+					Next <i
+							class="fa fa-angle-right" aria-hidden="true"></i>
+				</a>
+				</div>
+		</div>
+
+		<div class="tab-pane bs-tab-anim bs-tab-animated bs-deferred-container"
+		     id="relatedposts_60504087_2">
+					<div class="bs-pagination-wrapper main-term-none next_prev ">
+				<div class="bs-deferred-load-wrapper" id="bsd_relatedposts_60504087_2">
+			<script>var bs_deferred_loading_bsd_relatedposts_60504087_2 = '{"query":{"paginate":"next_prev","count":4,"author":1,"post_type":"post","_layout":{"state":"1|1|0","page":"2-col-right"}},"type":"wp_query","view":"Publisher::fetch_other_related_posts","current_page":1,"ajax_url":"\/wp-admin\/admin-ajax.php","remove_duplicates":"0","paginate":"next_prev","_layout":{"state":"1|1|0","page":"2-col-right"},"_bs_pagin_token":"2e28b0a"}';</script>
+		</div>
+		
+	</div>		</div>
+	</div>
+</div>
+<section id="comments-template-870" class="comments-template">
+	
+	
+		<div id="respond" class="comment-respond">
+		<p id="reply-title" class="comment-reply-title"><div class="section-heading sh-t1 sh-s1" ><span class="h-text">Leave A Reply</span></div> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/how-to-install-docker-compose-on-amazon-linux-ami/#respond" style="display:none;">Cancel Reply</a></small></p><form action="https://acloudxpert.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><div class="note-before"><p>Your email address will not be published.</p>
+</div><p class="comment-wrap"><textarea name="comment" class="comment" id="comment" cols="45" rows="10" aria-required="true" placeholder="Your Comment"></textarea></p><p class="author-wrap"><input name="author" class="author" id="author" type="text" value="" size="45"  aria-required="true" placeholder="Your Name *" /></p>
+<p class="email-wrap"><input name="email" class="email" id="email" type="text" value="" size="45"  aria-required="true" placeholder="Your Email *" /></p>
+<p class="url-wrap"><input name="url" class="url" id="url" type="text" value="" size="45" placeholder="Your Website" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="comment-submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='870' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p></form>	</div><!-- #respond -->
+	</section>
+						</div><!-- .content-column -->
+												<div class="col-sm-4 sidebar-column sidebar-column-primary">
+							<aside id="sidebar-primary-sidebar" class="sidebar" role="complementary" aria-label="Primary Sidebar Sidebar" itemscope="itemscope" itemtype="https://schema.org/WPSideBar">
+	<div id="custom_html-2" class="widget_text  h-ni w-nt primary-sidebar-widget widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://webamagicinformatica.com/upcoming-online-interactive-training/"><img class="aligncenter size-medium wp-image-6302" src="https://acloudxpert.com/wp-content/uploads/2022/03/1645789342683-300x300.jpg" alt="" width="300" height="300" /></a></div></div><div id="better-ads-2" class=" h-ni w-nt primary-sidebar-widget widget widget_better-ads"><div class="bsac bsac-clearfix  bsac-align-center bsac-column-1"><div id="bsac-2318-1139887121" class="bsac-container bsac-type-code " itemscope="" itemtype="https://schema.org/WPAdBlock" data-adid="2318" data-type="code"><span id="bsac-2318-1139887121-place"></span><script type="text/javascript">var betterads_screen_width = document.body.clientWidth;betterads_el = document.getElementById('bsac-2318-1139887121');             if (betterads_el.getBoundingClientRect().width) {     betterads_el_width_raw = betterads_el_width = betterads_el.getBoundingClientRect().width;    } else {     betterads_el_width_raw = betterads_el_width = betterads_el.offsetWidth;    }        var size = ["125", "125"];    if ( betterads_el_width >= 728 )      betterads_el_width = ["728", "90"];    else if ( betterads_el_width >= 468 )     betterads_el_width = ["468", "60"];    else if ( betterads_el_width >= 336 )     betterads_el_width = ["336", "280"];    else if ( betterads_el_width >= 300 )     betterads_el_width = ["300", "250"];    else if ( betterads_el_width >= 250 )     betterads_el_width = ["250", "250"];    else if ( betterads_el_width >= 200 )     betterads_el_width = ["200", "200"];    else if ( betterads_el_width >= 180 )     betterads_el_width = ["180", "150"]; if ( betterads_screen_width >= 1140 ) { document.getElementById('bsac-2318-1139887121-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="1995071397" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 1019  && betterads_screen_width < 1140 ) { document.getElementById('bsac-2318-1139887121-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="1995071397" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width >= 768  && betterads_screen_width < 1019 ) { document.getElementById('bsac-2318-1139887121-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="1995071397" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}else if ( betterads_screen_width < 768 ) { document.getElementById('bsac-2318-1139887121-place').innerHTML = '<ins class="adsbygoogle" style="display:inline-block;width:' + betterads_el_width[0] + 'px;height:' + betterads_el_width[1] + 'px"  data-ad-client="ca-pub-5871799497965336"  data-ad-slot="1995071397" ></ins>';         (adsbygoogle = window.adsbygoogle || []).push({});}</script></div></div></div></aside>
+						</div><!-- .primary-sidebar-column -->
+									</div><!-- .main-section -->
+		</div><!-- .layout-2-col -->
+
+	</main><!-- main -->
+	</div><!-- .content-wrap -->
+	<footer id="site-footer" class="site-footer full-width">
+				<div class="copy-footer">
+			<div class="content-wrap">
+				<div class="container">
+										<div class="row footer-copy-row">
+						<div class="copy-1 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							© 2022 - A Cloud Xpert. All Rights Reserved.						</div>
+						<div class="copy-2 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+													</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer><!-- .footer -->
+		</div><!-- .main-wrap -->
+			<span class="back-top"><i class="fa fa-arrow-up"></i></span>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124283769-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-124283769-1');
+</script>
+<script id='publisher-theme-pagination-js-extra'>
+var bs_pagination_loc = {"loading":"<div class=\"bs-loading\"><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><\/div>"};
+</script>
+<script id='better-bam-js-extra'>
+var better_bam_loc = {"ajax_url":"https:\/\/acloudxpert.com\/wp-admin\/admin-ajax.php"};
+</script>
+<script id='publisher-js-extra'>
+var publisher_theme_global_loc = {"page":{"boxed":"boxed"},"header":{"style":"style-2","boxed":"boxed"},"ajax_url":"https:\/\/acloudxpert.com\/wp-admin\/admin-ajax.php","loading":"<div class=\"bs-loading\"><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><div><\/div><\/div>","translations":{"tabs_all":"All","tabs_more":"More","lightbox_expand":"Expand the image","lightbox_close":"Close"},"lightbox":{"not_classes":""},"main_menu":{"more_menu":"enable"},"top_menu":{"more_menu":"enable"},"skyscraper":{"sticky_gap":30,"sticky":false,"position":"after-header"},"share":{"more":true},"refresh_googletagads":"1","notification":{"subscribe_msg":"By clicking the subscribe button you will never miss the new articles!","subscribed_msg":"You're subscribed to notifications","subscribe_btn":"Subscribe","subscribed_btn":"Unsubscribe"}};
+var publisher_theme_ajax_search_loc = {"ajax_url":"https:\/\/acloudxpert.com\/wp-admin\/admin-ajax.php","previewMarkup":"<div class=\"ajax-search-results-wrapper ajax-search-no-product ajax-search-fullwidth\">\n\t<div class=\"ajax-search-results\">\n\t\t<div class=\"ajax-ajax-posts-list\">\n\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t<span>Posts<\/span>\n\t\t\t<\/div>\n\t\t\t<div class=\"posts-lists\" data-section-name=\"posts\"><\/div>\n\t\t<\/div>\n\t\t<div class=\"ajax-taxonomy-list\">\n\t\t\t<div class=\"ajax-categories-columns\">\n\t\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t\t<span>Categories<\/span>\n\t\t\t\t<\/div>\n\t\t\t\t<div class=\"posts-lists\" data-section-name=\"categories\"><\/div>\n\t\t\t<\/div>\n\t\t\t<div class=\"ajax-tags-columns\">\n\t\t\t\t<div class=\"clean-title heading-typo\">\n\t\t\t\t\t<span>Tags<\/span>\n\t\t\t\t<\/div>\n\t\t\t\t<div class=\"posts-lists\" data-section-name=\"tags\"><\/div>\n\t\t\t<\/div>\n\t\t<\/div>\n\t<\/div>\n<\/div>","full_width":"1"};
+</script>
+		<div class="rh-cover noscroll gr-5" >
+			<span class="rh-close"></span>
+			<div class="rh-panel rh-pm">
+				<div class="rh-p-h">
+											<span class="user-login">
+													<span class="user-avatar user-avatar-icon"><i class="fa fa-user-circle"></i></span>
+							Sign in						</span>				</div>
+
+				<div class="rh-p-b">
+										<div class="rh-c-m clearfix"></div>
+
+											<form role="search" method="get" class="search-form" action="https://acloudxpert.com">
+							<input type="search" class="search-field"
+							       placeholder="Search..."
+							       value="" name="s"
+							       title="Search for:"
+							       autocomplete="off">
+							<input type="submit" class="search-submit" value="">
+						</form>
+										</div>
+			</div>
+							<div class="rh-panel rh-p-u">
+					<div class="rh-p-h">
+						<span class="rh-back-menu"><i></i></span>
+					</div>
+
+					<div class="rh-p-b">
+						<div id="form_74277_" class="bs-shortcode bs-login-shortcode ">
+		<div class="bs-login bs-type-login"  style="display:none">
+
+					<div class="bs-login-panel bs-login-sign-panel bs-current-login-panel">
+								<form name="loginform"
+				      action="https://acloudxpert.com/wp-login.php" method="post">
+
+					
+					<div class="login-header">
+						<span class="login-icon fa fa-user-circle main-color"></span>
+						<p>Welcome, Login to your account.</p>
+					</div>
+					
+					<div class="login-field login-username">
+						<input type="text" name="log" id="form_74277_user_login" class="input"
+						       value="" size="20"
+						       placeholder="Username or Email..." required/>
+					</div>
+
+					<div class="login-field login-password">
+						<input type="password" name="pwd" id="form_74277_user_pass"
+						       class="input"
+						       value="" size="20" placeholder="Password..."
+						       required/>
+					</div>
+
+					
+					<div class="login-field">
+						<a href="https://acloudxpert.com/wp-login.php?action=lostpassword&redirect_to=https%3A%2F%2Facloudxpert.com%2Fhow-to-install-docker-compose-on-amazon-linux-ami%2F"
+						   class="go-reset-panel">Forget password?</a>
+
+													<span class="login-remember">
+							<input class="remember-checkbox" name="rememberme" type="checkbox"
+							       id="form_74277_rememberme"
+							       value="forever"  />
+							<label class="remember-label">Remember me</label>
+						</span>
+											</div>
+
+					
+					<div class="login-field login-submit">
+						<input type="submit" name="wp-submit"
+						       class="button-primary login-btn"
+						       value="Log In"/>
+						<input type="hidden" name="redirect_to" value="https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/"/>
+					</div>
+
+									</form>
+			</div>
+
+			<div class="bs-login-panel bs-login-reset-panel">
+
+				<span class="go-login-panel"><i
+							class="fa fa-angle-left"></i> Sign in</span>
+
+				<div class="bs-login-reset-panel-inner">
+					<div class="login-header">
+						<span class="login-icon fa fa-support"></span>
+						<p>Recover your password.</p>
+						<p>A password will be e-mailed to you.</p>
+					</div>
+										<form name="lostpasswordform" id="form_74277_lostpasswordform"
+					      action="https://acloudxpert.com/wp-login.php?action=lostpassword"
+					      method="post">
+
+						<div class="login-field reset-username">
+							<input type="text" name="user_login" class="input" value=""
+							       placeholder="Username or Email..."
+							       required/>
+						</div>
+
+						
+						<div class="login-field reset-submit">
+
+							<input type="hidden" name="redirect_to" value=""/>
+							<input type="submit" name="wp-submit" class="login-btn"
+							       value="Send My Password"/>
+
+						</div>
+					</form>
+				</div>
+			</div>
+			</div>
+	</div>
+					</div>
+				</div>
+						</div>
+		<script type='text/javascript' id='better-post-views-cache-js-extra'>
+/* <![CDATA[ */
+var better_post_views_vars = {"admin_ajax_url":"https:\/\/acloudxpert.com\/wp-admin\/admin-ajax.php","post_id":"870"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acloudxpert.com/wp-content/plugins/better-post-views/js/better-post-views.min.js?ver=1.5.3' id='better-post-views-cache-js'></script>
+<script type='text/javascript' id='superpwa-register-sw-js-extra'>
+/* <![CDATA[ */
+var superpwa_sw = {"url":"\/OneSignalSDKWorker.js.php","disable_addtohome":"0","enableOnDesktop":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acloudxpert.com/wp-content/plugins/super-progressive-web-apps/public/js/register-sw.js' id='superpwa-register-sw-js'></script>
+<script type='text/javascript' src='https://acloudxpert.com/wp-includes/js/comment-reply.min.js?ver=5.8.6' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://acloudxpert.com/wp-includes/js/wp-embed.min.js?ver=5.8.6' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://cdn.onesignal.com/sdks/OneSignalSDK.js?ver=5.8.6' async='async' id='remote_sdk-js'></script>
+<script type='text/javascript' async="async" src='https://acloudxpert.com/wp-content/bs-booster-cache/4952f2612f1d357d980b66b75fb0036c.js?ver=5.8.6' id='bs-booster-js'></script>
+
+</body>
+</html>
